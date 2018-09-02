@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <h1>{{title}}</h1>
     <router-outlet></router-outlet>
+    <app-messages></app-messages>
   `,
   styles: []
 })
