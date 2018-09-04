@@ -8,11 +8,12 @@ import { HeroService } from '../../services/hero.service';
   template: `
   <h3>Top Heroes</h3>
   <div class="grid grid-pad">
-    <div *ngFor="let hero of heroes" class="col-1-4">
-      <a routerLink="/hero-details/{{hero.id}}">
-        <div class="module hero"><h4>{{hero.name}}</h4></div>
-      </a>
-    </div>
+    <a *ngFor="let hero of heroes" class="col-1-4"
+        routerLink="/detail/{{hero.id}}">
+      <div class="module hero">
+        <h4>{{hero.name}}</h4>
+      </div>
+    </a>
   </div>
   `,
   styleUrls: ['./dashboard.component.scss']
