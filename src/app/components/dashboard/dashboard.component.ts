@@ -15,6 +15,8 @@ import { HeroService } from '../../services/hero.service';
       </div>
     </a>
   </div>
+
+  <app-hero-search></app-hero-search>
   `,
   styleUrls: ['./dashboard.component.scss']
 })
