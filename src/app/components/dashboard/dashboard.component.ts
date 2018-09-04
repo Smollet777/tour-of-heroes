@@ -8,11 +8,11 @@ import { HeroService } from '../../services/hero.service';
   template: `
   <h3>Top Heroes</h3>
   <div class="grid grid-pad">
-    <a *ngFor="let hero of heroes" class="col-1-4">
-      <div class="module hero">
-        <h4>{{hero.name}}</h4>
-      </div>
-    </a>
+    <div *ngFor="let hero of heroes" class="col-1-4">
+      <a routerLink="/hero-details/{{hero.id}}">
+        <div class="module hero"><h4>{{hero.name}}</h4></div>
+      </a>
+    </div>
   </div>
   `,
   styleUrls: ['./dashboard.component.scss']
@@ -29,6 +29,6 @@ export class DashboardComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(0, 4));
+      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
 }

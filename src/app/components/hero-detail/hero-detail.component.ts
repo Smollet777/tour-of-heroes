@@ -1,11 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 import { Hero } from '../../models/hero.model';
+import { HeroService } from '../../services/hero.service';
 
 @Component({
   selector: 'app-hero-detail',
   template: `
-  <div *ngIf="hero">
   <h2>{{hero.name | uppercase}} Details</h2>
     <div>
       <span>id: </span>{{hero.id}}
@@ -13,16 +16,24 @@ import { Hero } from '../../models/hero.model';
     <div>
       <label>name:<input [(ngModel)]="hero.name" placeholder="name"/></label>
     </div>
-  </div>
   `,
   styles: []
 })
 export class HeroDetailComponent implements OnInit {
-  @Input() hero: Hero;
 
-  constructor() { }
+  hero: Hero;
 
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private heroService: HeroService, private location: Location
+  ) { }
+
+  ngOnInit(): void {
+    this.getHero();
+  }
+
+  getHero(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.heroService.getHero(id)
+      .subscribe(hero => this.hero = hero);
   }
 
 }
